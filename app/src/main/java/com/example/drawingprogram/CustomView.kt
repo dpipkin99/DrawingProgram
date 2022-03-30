@@ -13,6 +13,9 @@ import kotlin.random.Random
 
 class CustomView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
+    var pathColor = Color.BLUE
+
+
     private var paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var path = Path()
     private var pathList= mutableListOf<Path>()
@@ -67,11 +70,15 @@ class CustomView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
 
-
+    fun clearDrawing(){
+        pathList.clear()
+        paintList.clear()
+        invalidate()
+    }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        //canvas?.drawRect(10f, 20f, 200f, 300f, paint)
+
         for (i in pathList.indices) {
             paint.color = paintList[i]
             canvas?.drawPath(pathList[i],paint )
